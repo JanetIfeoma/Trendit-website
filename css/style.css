@@ -1,0 +1,310 @@
+@import url('https://fonts.cdnfonts.com/css/campton');
+
+*{
+    margin: 0;
+    padding:0;
+    list-style-type: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: var(--font-family1);
+}
+                
+:root{
+    --bg-color:#000000;
+    --second-bg-color:#121212;
+    --text-color:#fff;
+    --main-color:#ff6dfb;
+    --second-color:#FFD0FE;
+    --text-muted:#b1b1b1;
+    --font-family1: 'Campton', sans-serif;
+    --font-family2: 'Inter', sans-serif;
+}
+
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    background-color: var(--bg-color);
+}
+.container{
+   overflow: hidden; 
+}
+
+
+/* header */
+.header {
+    padding: 12px 200px;
+    height: 119px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-family1);
+}
+
+.hamburger {
+    display: none; 
+}
+.nav-bar {
+    display: flex;
+}
+.nav-bar ul {
+    gap: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-bar ul li a {
+    padding: 12px 25px;
+    gap: 4px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    font-weight: 600;
+    letter-spacing: -6%;
+    text-align: center;
+    transition: color 0.3s ease-in-out;
+}
+.nav-bar ul li a:hover,
+.nav-bar ul li a.active{
+    color: #ff6dfb;
+}
+
+
+#signin-btn {
+    background-color: var(--text-color);
+    padding: 12px 20px;
+    border-radius: 100px;
+    color: #000000;
+    gap: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    width: 152px;
+}
+
+
+
+
+/* Hero */
+
+.hero{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    color: var(--text-color);
+    font-family: var(--font-family1);
+    height: auto;
+    margin-top: 8vh;
+}
+
+.hero .left{
+    gap: 4vw;
+    margin-top: 81px;
+    margin-left: 200px;
+    justify-content: left;
+   
+    
+}
+.hero .right img{
+    margin-top: 90px;
+    margin-left: -60px;
+}
+
+.hero .left h1{
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 54px;
+    letter-spacing: -0.06em;
+    text-align: left;
+
+}
+
+.hero .left p{
+    font-size: 20px;
+    font-weight: 400; 
+    margin: 20px 0;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    width: 436px;
+
+}
+.hero input{
+    width: 281px;
+    border-radius: 4px;
+    padding: 14px 12px;
+    margin: 8px 0;
+    color: #1e1e1e;
+    outline: none;
+    border: none;
+}
+
+.call-to-actions{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0;
+    text-wrap: nowrap;
+}
+.call-to-actions #cta{
+    background-color: var(--main-color);
+    border-radius: 100px;
+    padding: 14px 24px;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -6%;
+}
+.credits{
+    display: flex;
+    align-items: center;
+    gap: 51px;
+    
+}
+
+.credits h4{
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -6%;
+}
+.credits span{
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -6%;
+    
+}
+
+
+
+
+/* marketplace */
+.product-interface{
+    display: flex;
+    align-items: center;
+    height: auto;
+    flex-direction: column;
+}
+.product-interface #gradient{
+    margin-top: -480px;
+    z-index: 1;
+    margin-bottom: 80px;
+
+}
+
+.box{
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    width: 926px;
+   color: #fff;
+
+}
+
+.box .text{
+    gap: 42px;
+    opacity: 50%;
+    font-family: var(--font-family1);
+    width: 431px;
+    height: 260px;
+   justify-content: left;
+}
+
+.box .text h6{
+    font-weight: 700;
+    font-size: 32px;
+  
+}
+
+.box .text p{
+    font-weight: 400;
+    font-size: 20px;
+    padding: 10px 0;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:1040px) {
+    .header {
+        padding: 12px 30px;
+    }
+   
+}
+
+/* Media Query for Mobile Devices */
+@media only screen and (max-width:900px) {
+    .header {
+        padding: 12px 20px;
+    }
+    .hamburger .bar {
+        width: 30px;
+        height: 3px;
+        background-color: #fff;
+        margin: 6px 0;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+    .nav-bar {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        height: 450px;
+        background: #000 ;
+        transition:  0.3s ease-in-out,  opacity 0.1s ease-out;
+        overflow: hidden;
+        opacity: 0;
+    }
+    .nav-bar.active{
+        height: 100vh;
+        display: block;
+        opacity: 1;
+    }
+    .nav-bar ul{
+        flex-direction: column;
+        width: fit-content;
+        margin: 80px auto 0 auto;
+        transition: 0.5s;
+        opacity: 0;
+    
+    }
+     .nav-bar ul li a{
+        margin-bottom: 12px;
+        font-size: 25px;
+        
+    }
+
+    .nav-bar.active ul{
+       opacity: 1;
+    } 
+    
+
+}
