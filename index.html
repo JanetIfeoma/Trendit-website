@@ -11,11 +11,7 @@
     <div class="container">
     <header class="header">
         <div class="logo"><img src="./images/logo.png" alt=""></div>
-        <div class="hamburger">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
+        
         <nav class="nav-bar">
             <ul>
                 <li><a class="active" href="#">Home</a></li>
@@ -24,13 +20,17 @@
                 <li><a href="#">Blog</a></li>
             </ul>
         </nav>
-        <a id="signin-btn" href="#">Sign in</a> 
+        <a id="signin-btn" href="#">Sign in</a> <div class="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
         <!-- <div class="cancel" id="cancel">&#10005;</div> -->
     </header>
 
      <div class="hero">
         <div class="left">
-            <h1>Earn money <br> by connecting businesses to their potential customers.</h1>
+            <h1>Earn money <br> by connecting <br> businesses to their potential customers.</h1>
             <p>Our platform offers a variety of opportunities for users to earn while carrying out simple social media tasks for businesses and individuals.</p>
             <input type="text" placeholder="Continue with Email">
             <div class="call-to-actions">
@@ -39,35 +39,50 @@
                 <p>Watch video</p>  
             </div>
             <div class="credits">
-                <h4>$4M+ <span>Paid to earners</span> </h4>
-                <h4>78K+ <span>Adverts Created</span> </h4>
+                <div class="text"> <h4>$4M+</h4> <p>Paid to <br> earners</p> 
+                </div>
+               <div class="text">
+                <h4>78K+  </h4>
+                <p>Adverts <br> Created</p>
+                </div>
             </div>
             
         </div>
         <div class="right">
-            <img src="./images/illustration.png" width="540px">
+            <img src="./images/illustration.png" width="552px">
         </div>
     </div>
 
     <div class="product-interface">
-        <img src="./images/dashoard.png" alt="">
+        <div class="image-container">
+            <img src="./images/dashoard.png" alt="">
+            <img  id="hover-image" src="./images/dashboard2.png" alt="">
+        </div>
         <img id="gradient" src="./images/gradient.png" alt="">
         <div class="box">
+        <div class="box" id="box1">
             <div class="text">
-            <h6>For Earners</h6>
-            <p>Monetize Your Influence! Earn by Posting Ads on Your Social Media Earn daily income by posting adverts and performing social tasks for individuals, businesses and top brands on your social media account</p>
-            </div>
-            <div class="text">
-            <h6>For Adverisers</h6>
-            <p>Get real people to post your ads on their social media account Boost your reach! Get real people with 500+ followers to post or share your ads on their social media</p>
+                <h6>For Earners</h6>
+                <p>Monetize Your Influence! Earn by Posting Ads on Your Social Media Earn daily income by posting adverts and performing social tasks for individuals, businesses and top brands on your social media account</p>
+                <button class="btn">Generate a task</button>
             </div>
         </div>
+        <div class="box" id="box2">
+            <div class="text">
+                <h6>For Advertisers</h6>
+                <p>Get real people to post your ads on their social media account Boost your reach! Get real people with 500+ followers to post or share your ads on their social media</p>
+                <button class="btn">Create an Advert</button>
+            </div>
+        </div>
+    </div>
     </div>
 
 
     
     </div>
-    <script src="./js/script.js">
-</script>
+    <script src="./js/script.js"></script>
+    <script src="./js/scrollreveal.min.js"></script>
+    
+
 </body>
 </html>
