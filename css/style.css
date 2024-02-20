@@ -779,6 +779,7 @@ html{
         gap: 10px; 
         justify-content: space-between;
         margin-top: 10px;
+        text-wrap: nowrap;
         
     }
     
