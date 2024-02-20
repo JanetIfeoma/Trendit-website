@@ -39,6 +39,34 @@ firstBox.addEventListener('click', showFirstImage);
 secondBox.addEventListener('mouseenter', showSecondImage);
 secondBox.addEventListener('click', showSecondImage);
 
+// FADE IN SOCIAL IMAGES
+function isInViewport(element) {
+    var rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+// Function to handle the scroll event
+function handleScroll() {
+    var images = document.querySelectorAll('.socials img');
+    images.forEach(function(image, index) {
+        if (isInViewport(image)) {
+            setTimeout(function() {
+                image.classList.add('show');
+            }, index * 200); // Add a delay based on the index of the image
+        }
+    });
+}
+
+// Add scroll event listener to trigger handleScroll function
+window.addEventListener('scroll', handleScroll);
+
+// Initial check when the page loads
+handleScroll();
 
 
 // // scroll reveal
