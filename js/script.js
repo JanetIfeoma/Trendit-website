@@ -69,6 +69,37 @@ window.addEventListener('scroll', handleScroll);
 handleScroll();
 
 
+
+
+// Select all the testimonials boxes
+const testimonialsBoxes = document.querySelectorAll('.testimonials .testimonials-box');
+
+// Observer options
+const options = {
+  root: null,
+  threshold: 0.5, // Trigger when 50% of the box is visible
+  rootMargin: '0px',
+};
+
+// Intersection Observer callback function
+const callback = (entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1'; // Fade in the box
+      observer.unobserve(entry.target); // Stop observing once box is visible
+    }
+  });
+};
+
+// Create Intersection Observer
+const observer = new IntersectionObserver(callback, options);
+
+// Observe each testimonials box
+testimonialsBoxes.forEach((box) => {
+  observer.observe(box);
+});
+
+
 // // scroll reveal
 // const sr =ScrollReveal({
 //     origin:'top',
