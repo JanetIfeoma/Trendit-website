@@ -1399,6 +1399,9 @@ footer{
 .faqs h2{
     text-align: center;
 }
+.accordion li label{
+    font-size: 16px;
+}
 footer .left{
     gap: 20px;
     align-items: center;
