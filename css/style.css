@@ -158,7 +158,6 @@ html{
     align-items: center;
     gap: 8px;
     margin: 10px 0;
-    text-wrap: nowrap;
 }
 .call-to-actions #cta{
     background-color: #CB29BE;
@@ -207,6 +206,7 @@ html{
     height: auto;
     flex-direction: column;
     position: relative;
+    padding-bottom: 150px;
 }
 
 .image-container {
@@ -553,6 +553,9 @@ html{
 
 }
 
+
+
+
 .about2-box .benefits{
     display: flex;
     align-items: center;
@@ -790,6 +793,7 @@ p#read-more{
        padding: 20px 0;
        font-size: 18px;
        font-weight: 400;
+       justify-content: space-between;
        border-bottom: 1px solid #b1b1b1;
        cursor: pointer;
        position: relative;
@@ -803,6 +807,7 @@ p#read-more{
        right: 20px;
        color: var(--text-muted);
        transition: transform 0.5s;
+       margin-left: 10px;
    }
    input[type='radio']{
        display: none;
@@ -1195,13 +1200,13 @@ footer .right .bottom .list{
         gap: 10px; 
         justify-content: space-between;
         margin-top: 10px;
-        text-wrap: nowrap;
+        
         
     }
     
     .call-to-actions #cta {
         padding: 12px 24px; 
-        font-size: 14px;
+        font-size: 14px;text-wrap: nowrap;
     }
     
     .credits {
@@ -1399,9 +1404,10 @@ footer .left{
     align-items: center;
 }
 footer .right .top{
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Three columns with equal width */
     gap: 50px;
-    text-align: center;
+    text-align: left;
 }
 footer .right .bottom{
     flex-direction: column;
