@@ -99,6 +99,39 @@ testimonialsBoxes.forEach((box) => {
   observer.observe(box);
 });
 
+// image scroll
+
+document.addEventListener("DOMContentLoaded", function () {
+  const scrollLeft = document.querySelector(".scroll-left");
+  const scrollRight = document.querySelector(".scroll-right");
+  const benefitsContainer = document.querySelector(".about2-box .benefits");
+
+  scrollLeft.addEventListener("click", function () {
+      benefitsContainer.scrollBy({
+          left: -316,
+          behavior: "smooth",
+      });
+  });
+
+  scrollRight.addEventListener("click", function () {
+      benefitsContainer.scrollBy({
+          left: 316,
+          behavior: "smooth",
+      });
+  });
+
+  const isMobile = window.matchMedia("only screen and (max-width: 768px)");
+
+  if (isMobile.matches) {
+      const benefitBoxes = document.querySelectorAll(".about2-box .benefits .benefit-box");
+
+      benefitBoxes.forEach((box) => {
+          box.style.scrollSnapAlign = "center";
+      });
+  }
+});
+
+
 
 // // scroll reveal
 // const sr =ScrollReveal({
