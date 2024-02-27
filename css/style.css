@@ -1720,9 +1720,10 @@ footer .right .bottom .list{
         color: var(--text-color);
         font-size: 14px;
         font-weight: 500;
-        text-wrap: nowrap;
+        white-space: nowrap; /* Prevent wrapping */
         letter-spacing: -6%;
     }
+    
     
     .credits {
         gap: 55px; 
