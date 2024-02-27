@@ -1703,6 +1703,7 @@ footer .right .bottom .list{
     
     .call-to-actions {
         gap: 10px; 
+        align-items: center;
         justify-content: space-between;
         margin-top: 10px;
         
@@ -1710,10 +1711,17 @@ footer .right .bottom .list{
     }
     
     .call-to-actions #cta {
-        padding: 12px 24px; 
-        font-size: 14px;text-wrap: nowrap;
-        word-wrap: none;
+        background-color: #CB29BE;
+        border-radius: 100px;
+        padding: 14px 24px;
+        gap: 8px;
+        outline: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 14px;
+        font-weight: 500;
         text-wrap: nowrap;
+        letter-spacing: -6%;
     }
     
     .credits {
