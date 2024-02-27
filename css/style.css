@@ -1386,6 +1386,8 @@ footer .right .bottom .list{
     .call-to-actions #cta {
         padding: 12px 24px; 
         font-size: 14px;text-wrap: nowrap;
+        word-wrap: none;
+        text-wrap: nowrap;
         flex-wrap: nowrap;
     }
     
