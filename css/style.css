@@ -159,11 +159,7 @@ html{
     gap: 8px;
     margin: 10px 0;
 }
-img #iphone{
-    width: 291.59px;
-  height: 592.91px;
-  
-}
+
 .call-to-actions #cta{
     background-color: #CB29BE;
     border-radius: 100px;
@@ -1735,6 +1731,7 @@ footer .right .bottom .list{
     }
     .credits .text p{
         font-size: 14px;
+        line-height: 14px;
     }
     .product-interface {
         align-items: center;
@@ -1884,6 +1881,7 @@ footer .right .bottom .list{
     padding: 50px 30px;
     flex-direction: column;
     text-align: center;
+    align-items: center;
 }
 .product2-text h3{
     font-size: 35px;
