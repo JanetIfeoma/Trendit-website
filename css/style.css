@@ -174,9 +174,7 @@ img #iphone{
     color: var(--text-color);
     font-size: 14px;
     font-weight: 500;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
+    text-wrap: nowrap;
     letter-spacing: -6%;
 }
 .credits{
@@ -1712,7 +1710,8 @@ footer .right .bottom .list{
     .call-to-actions #cta {
         padding: 12px 24px; 
         font-size: 14px;text-wrap: nowrap;
-        flex-wrap: nowrap;
+        word-wrap: none;
+        text-wrap: nowrap;
     }
     
     .credits {
