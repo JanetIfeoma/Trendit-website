@@ -569,9 +569,12 @@ html{
     opacity: 0.7px;
     background: linear-gradient(0deg, #1D1D20, #1D1D20),
     linear-gradient(0deg, #3A3A3F, #3A3A3F);
-    max-width: 49px;
+    max-width:fit-content;
     font-family: var(--font-family2);
     font-size: 11px;
+    text-wrap: nowrap;
+    word-wrap: none;
+    flex-wrap: nowrap;
     font-weight: 600;
     line-height: 13px;
     border: 1px solid #3A3A3F;
@@ -1383,7 +1386,6 @@ footer .right .bottom .list{
         padding: 12px 24px; 
         font-size: 14px;text-wrap: nowrap;
         word-wrap: none;
-        text-wrap: nowrap;
         flex-wrap: nowrap;
     }
     
