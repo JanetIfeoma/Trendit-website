@@ -1,0 +1,140 @@
+@import url('https://fonts.cdnfonts.com/css/campton');
+
+*{
+    margin: 0;
+    padding:0;
+    list-style-type: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: var(--font-family1);
+}
+   
+
+
+:root{
+    --bg-color:#000000;
+    --second-bg-color:#121212;
+    --text-color:#fff;
+    --main-color:#ff6dfb;
+    --second-color:#FFD0FE;
+    --text-muted:#b1b1b1;
+    --font-family1: 'Campton', sans-serif;
+    --font-family2: 'Inter', sans-serif;
+}
+
+
+
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    background-color: var(--second-bg-color);
+}
+.container{
+   display: flex;
+   align-items: start;
+   justify-content: space-between;
+   color: #b1b1b1;
+   padding: 20px 0;
+}
+.container .navbar img{
+    width: 132px;
+    height: 52px;
+    align-self: first baseline;
+    margin-bottom:20px ;
+}
+.container .navbar{
+    width: 309px;
+    padding: 34px 24px;
+    gap: 13px;
+    height: 170vh;
+    display: flex;
+    text-wrap:nowrap ;
+    flex-direction: column;
+    border-right: 1px solid #1E1E1E
+    
+}
+.container .navbar a{
+    color: #b1b1b1;
+    text-decoration: none;
+    text-align: left;
+    font-family: var(--font-family1);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.3px;
+    letter-spacing: -0.06em;
+
+}
+.container .navbar a#selected{
+    color: #ff6dfb;
+}
+.container .content {
+  display: flex;
+  flex-direction: column;
+  padding: 48px;
+  
+  text-align: left;
+}
+.container .content h1{
+  text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 26.88px;
+    letter-spacing: -0.06em;
+    color: #fff;
+
+
+}
+.container .content p, .container .content h6{
+    font-family: Campton;
+    font-size: 16.03px;
+    font-weight: 600;
+    line-height: 18.66px;
+    letter-spacing: -0.06em;
+    color: #fff;
+    margin-top: 20px;
+    
+}
+.container .content span{
+    font-size: 16.03px;
+    font-weight: 400;
+    line-height: 18.66px;
+    color: #b1b1b1;
+    letter-spacing: -0.06em;
+}
+.container .content span a#blue{
+    color: #1877f2;
+}
+
+.container .buttons{
+    gap: 24px;
+    display: flex;
+    align-self: center;
+    padding: 30px 0;
+   
+}
+.container .buttons button{
+    width: 200px;
+    padding: 14px 24px;
+    gap: 8px;
+    border-radius: 100px;
+    opacity: 0px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12.83px;
+    font-weight: 500;
+    line-height: 14.93px;
+    letter-spacing: -0.06em;
+    background-color: transparent;
+    border: 2px solid #B1B1B1;
+}
+.container .buttons button:nth-child(2){
+    width:290px;
+    padding:14px 24px;
+    gap: 8px;
+    border-radius: 100px;
+    opacity: 0px;
+    border: none;
+    cursor: pointer;
+    background: #CB29BE;
+
+}
