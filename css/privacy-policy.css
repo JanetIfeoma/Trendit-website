@@ -35,25 +35,39 @@ html{
    justify-content: space-between;
    color: #b1b1b1;
    padding: 20px 0;
+   position: relative;
 }
-.container .navbar img{
+.container .sidebar img{
     width: 132px;
     height: 52px;
     align-self: first baseline;
     margin-bottom:20px ;
+    display: block;
 }
-.container .navbar{
+
+.open-btn {
+    /* Your existing styles */
+    display: none; /* Hide the hamburger menu by default */
+  }
+  
+  .close-btn {
+    display: none;
+   
+  }
+  
+.container .sidebar{
     width: 309px;
     padding: 34px 24px;
     gap: 13px;
-    height: 170vh;
+    height: 100vh;
     display: flex;
     text-wrap:nowrap ;
+    transition: left 0.3s ease;
     flex-direction: column;
     border-right: 1px solid #1E1E1E
     
 }
-.container .navbar a{
+.container .sidebar a{
     color: #b1b1b1;
     text-decoration: none;
     text-align: left;
@@ -64,14 +78,17 @@ html{
     letter-spacing: -0.06em;
 
 }
-.container .navbar a#selected{
+.container .sidebar a:hover{
+    color: #ff6dfb;
+
+}
+.container .sidebar a#selected{
     color: #ff6dfb;
 }
 .container .content {
   display: flex;
   flex-direction: column;
   padding: 48px;
-  
   text-align: left;
 }
 .container .content h1{
@@ -138,3 +155,53 @@ html{
     background: #CB29BE;
 
 }
+
+
+
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+      left:0;
+      position: absolute;
+      background: #000000;
+    }
+  
+    .sidebar.active {
+      left: 0;
+    }
+  
+    .container .content {
+      padding: 15px;
+      max-width: fit-content;
+      text-wrap: wrap;
+    }
+    .open-btn {
+        display: block; /* Show hamburger menu in mobile */
+        /* Additional styling for the hamburger menu */
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+      }
+    .close-btn {
+      display: block;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .container .content h1{
+        font-size: 30px;
+    }
+    .container .buttons{
+        gap: 10px;
+    }
+  }

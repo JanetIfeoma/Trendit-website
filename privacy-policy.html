@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-            <div class="navbar">
+            <div class="sidebar">
                 <img src="./images/logo.svg" alt="">
                 <a id="selected" href="">Accepting the terms</a>
                 <a href="">Using our product</a>
@@ -19,9 +19,12 @@
                 <a href="">Fees and paid services</a>
                 <a href="">Resolution process for transactions</a>
                 <a href="">Security</a>
+                <button class="close-btn">&times;</button>
+
 
         </div>
             <div class="content">
+                <button class="open-btn">&#9776;</button>
                 <h1>Terms of Services</h1>
                 <p> Please ensure that you read these terms carefully and ensure you understand it fully. <span> If you have any questionplease don’t hesitate to contact us using our <a href="" id="blue">support services</a> </span></p>
                 <h6>Accepting the Terms</h6>
@@ -48,6 +51,19 @@
         </div>
     </div>
     
-    
+   <script>
+   const openBtn = document.querySelector('.open-btn');
+const closeBtn = document.querySelector('.close-btn');
+const sidebar = document.querySelector('.sidebar');
+
+openBtn.addEventListener('click', () => {
+  sidebar.style.left = '0';
+});
+
+closeBtn.addEventListener('click', () => {
+  sidebar.style.left = '-309px';
+});
+
+   </script> 
 </body>
 </html>
