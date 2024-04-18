@@ -144,6 +144,9 @@ html{
     background-color: transparent;
     border: 2px solid #B1B1B1;
 }
+.container .buttons button:hover{
+    background-color: #B1B1B1;
+}
 .container .buttons button:nth-child(2){
     width:290px;
     padding:14px 24px;
@@ -155,11 +158,18 @@ html{
     background: #CB29BE;
 
 }
+.container .buttons button:nth-child(2):hover{
+    background: #f591ec;
+
+}
 
 
 
 
 @media screen and (max-width: 768px) {
+    .container{
+      display: block;
+    }
     .sidebar {
       left:0;
       position: absolute;
@@ -203,5 +213,11 @@ html{
     }
     .container .buttons{
         gap: 10px;
+    }
+    .container .buttons button{
+        width: 100px;
+    }
+    .container .buttons button:nth-child(2){
+        width: 190px;
     }
   }
