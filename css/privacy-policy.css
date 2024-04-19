@@ -169,6 +169,8 @@ html{
 @media screen and (max-width: 768px) {
     .container{
       display: block;
+      width: fit-content;
+      padding:0 10px;
     }
     .sidebar {
       left:0;
@@ -178,6 +180,9 @@ html{
   
     .sidebar.active {
       left: 0;
+    }
+    .container .content p, .container .content h6{
+        margin-top: 25px;
     }
   
     .container .content {
