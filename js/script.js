@@ -131,7 +131,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
+document.querySelectorAll('.about-btns button').forEach(button => {
+    button.addEventListener('click', function() {
+        document.getElementById('select').removeAttribute('id');
+        this.id = 'select';
+    });
+});
 
 // // scroll reveal
 // const sr =ScrollReveal({

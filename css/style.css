@@ -409,9 +409,9 @@ html{
     font-size: 64px;
     font-family: Campton;
     letter-spacing: -0.06em;
+    width: 700px;
     text-align: center;
     line-height: 74px;
-    width: 300px;
     color: var(--text-color);
 
 }
@@ -419,7 +419,7 @@ html{
     margin-top: -250px;
     font-size: 20px;
     font-weight: 400;
-    width: 467px;
+    width: 767px;
     line-height: 24px;
     letter-spacing: -0.02em;
     text-align: center;
@@ -460,6 +460,7 @@ html{
     justify-content: space-around;
     display: flex;
     background-color:#121212 ;
+    transition: 1s ease-in-out;
 }
 .about .about-btns button{
    background-color: transparent;
@@ -559,8 +560,14 @@ html{
     padding: 50px 0;
     text-align: left;
     margin-left: 59px;
-    overflow-x: auto; /* Enable horizontal scrolling */    white-space: nowrap; /* Prevent line breaks */ 
-    overflow: hidden;   scroll-behavior: smooth;
+    overflow-x: auto; 
+    white-space: nowrap; 
+    overflow-x: hidden;  
+     scroll-behavior: smooth;
+}
+
+.about2-box .benefits::-webkit-scrollbar{
+    overflow-y: hidden;
 }
 
 .about2-box .benefits #date{
@@ -615,7 +622,7 @@ html{
     display: flex;
     gap: 10px;
     justify-content: center;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
 .image-scroll img {
@@ -634,10 +641,11 @@ html{
 }
 
 p#read-more{
-    width: 103px;
     padding: 12px 8px;
     border-bottom: 1px solid #CB29BE;
     gap: 4px;
+    text-wrap: nowrap;
+    white-space: nowrap;
     font-size: 16px;
     align-self: center;
     
@@ -888,7 +896,7 @@ footer{
 }
 
 footer .left{
-    gap: 400px;
+    gap: 100px;
     display: flex;
     flex-direction: column;
 }
@@ -1823,6 +1831,8 @@ footer .right .bottom .list{
 }
 .engage h2,.about h2{
     font-size: 35px;
+    width: 390px;
+    line-height: 40px;
 }
 .about .about-btns{
     width: 90%;
@@ -1888,6 +1898,7 @@ footer .right .bottom .list{
 }
 .product2-text h3{
     font-size: 35px;
+    line-height: 40px;
 }
 .product2-text p{
     font-size: 16px;
