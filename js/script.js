@@ -138,6 +138,49 @@ document.querySelectorAll('.about-btns button').forEach(button => {
     });
 });
 
+
+document.querySelectorAll('.about-btns button').forEach(button => {
+    button.addEventListener('click', function() {
+        // Clear existing content
+        document.querySelector('.about-text').innerHTML = '';
+        if (this.textContent === 'For Advertisers') {
+            // Add content for advertisers
+            document.querySelector('.about-text').innerHTML = `
+                <div class="box1">
+                    <img src="./images/engage.png" alt="">
+                    <h6>Get Engagement</h6>
+                    <p>Grow your social media accounts organically by getting real users to follow and engage with your content.</p>
+                </div>
+                <div class="box1">
+                    <img src="./images/resell.png" alt="">
+                    <h6>Quick results</h6>
+                    <p>Achieve your social media goals quickly and efficiently by purchasing real and authentic followers and engagement!</p>
+                </div>
+            `;
+        } else {
+            // Add content for earners
+            document.querySelector('.about-text').innerHTML = `
+                <div class="box1">
+                    <img src="./images/mobile.png" alt="">
+                    <h6>Repost adverts</h6>
+                    <p>With just a few clicks you can help individuals and brands reach a wider audience and earn by simply reposting their ads.</p>
+                </div>
+                <div class="box1">
+                    <img src="./images/engage.png" alt="">
+                    <h6>Engage</h6>
+                    <p>Interact actively! Boost account growth by following, liking, commenting, resharing their posts, subscribing to their channels, and engaging in numerous other supportive activities!</p>
+                </div>
+                <div class="box1">
+                    <img src="./images/resell.png" alt="">
+                    <h6>Resell</h6>
+                    <p>Unlock earning potential by aiding businesses in reselling their products. Every successful sale you generate adds to your income. Embrace the mantra: Sell more, earn more! Start your journey to lucrative reselling today!</p>
+                </div>
+            `;
+        }
+    });
+});
+
+
 // // scroll reveal
 // const sr =ScrollReveal({
 //     origin:'top',
