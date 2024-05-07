@@ -928,6 +928,11 @@ footer .right .top{
 footer .right .top p{
     margin-top: 10px;
 }
+footer .right .top p a{
+    color: #FFD0FE 
+        
+    };
+
 
 footer .right .top #heading{
     color: #fff;
