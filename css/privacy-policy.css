@@ -86,7 +86,7 @@ html{
     color: #ff6dfb;
 }
 .container .content {
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 48px;
   text-align: left;
@@ -100,6 +100,9 @@ html{
     color: #fff;
 
 
+}
+.content.active {
+    display: block; 
 }
 .container .content p, .container .content h6{
     font-family: Campton;

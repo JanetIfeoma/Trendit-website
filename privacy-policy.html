@@ -11,8 +11,9 @@
     <div class="container">
             <div class="sidebar">
                 <img src="./images/logo.svg" alt="">
-                <a href="#privacy-policy">Privacy policy</a>
-                <a id="selected" href="#accept-terms">Accepting the terms</a>
+                <a href="#privacy-policy" onclick="showContent('privacy-policy')" >Privacy policy</a>
+                <a href="#accept-terms" onclick="showContent('accept-terms')">Accepting the Terms</a>
+
                 <!-- <a href="#product-use">Using our product</a> -->
                 
                 <!-- <a href="#general-restrictions">General restriction</a>
@@ -45,7 +46,7 @@
 
 
         </div> -->
-        <div class="content">
+        <div class="content" id="privacy-policy">
             <button class="open-btn">&#9776;</button>
                     <h1 id="privacy-policy">Privacy Policy for Trendit³</h1>
                     <p>Effective Date: 5th May 2024.</p>
@@ -199,7 +200,8 @@
                                 
                             
                 </div>
-        <div class="content">
+        <div class="content" id="accept-terms">
+            <button class="open-btn">&#9776;</button>
             <h1 id="accept-terms">Terms of Services</h1>
                 <p> Please ensure that you read these terms carefully and ensure you understand it fully. <span> If you have any questions please don’t hesitate to contact us using our <a href="" id="blue">support services</a> </span></p><br>
                 <span>Trendit³ is a product of <b>TRENDIT MEDIA LIMITED</b> , a company fully registered and operating under the laws of the Federal Republic of Nigeria, with <b> RC-7086158</b> under the 1990 Company Allied Matters Act. Trendit³ is an online freelance platform that compensates its users (Earners) for performing simple everyday tasks on their social media accounts. These tasks may range from engaging with sponsored content to submitting reviews or polls on products posted by our Advertisers. We also provide Social Media Marketing Services to Individuals, Businesses, and Brands. </span>
@@ -334,22 +336,23 @@
     </div>
     
    <script>
-   const openBtn = document.querySelector('.open-btn');
-const closeBtn = document.querySelector('.close-btn');
-const sidebar = document.querySelector('.sidebar');
+document.addEventListener('DOMContentLoaded', function () {
+            const openBtns = document.querySelectorAll('.open-btn');
+            const closeBtn = document.querySelector('.close-btn');
+            const sidebar = document.querySelector('.sidebar');
+            const links = document.querySelectorAll('.sidebar a');
 
-openBtn.addEventListener('click', () => {
-  sidebar.style.left = '0';
-});
+            openBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    sidebar.style.left = '0';
+                });
+            });
 
 closeBtn.addEventListener('click', () => {
   sidebar.style.left = '-309px';
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const links = document.querySelectorAll('.sidebar a');
-    const sidebar = document.querySelector('.sidebar');
-    const closeBtn = document.querySelector('.close-btn');
+
 
     links.forEach(function (link) {
         link.addEventListener('click', function (event) {
@@ -382,6 +385,32 @@ document.addEventListener('DOMContentLoaded', function () {
         sidebar.style.left = '-309px';
     });
 });
+
+function showContent(contentId) {
+            // Hide all content sections
+            var contents = document.querySelectorAll('.content');
+            contents.forEach(function(content) {
+                content.classList.remove('active');
+            });
+
+            // Show the selected content section
+            var selectedContent = document.getElementById(contentId);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+            }
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            var initialContent = window.location.hash ? window.location.hash.substring(1) : 'privacy-policy';
+            showContent(initialContent);
+        });
+
+        window.addEventListener('hashchange', function() {
+            var newContent = window.location.hash.substring(1);
+            showContent(newContent);
+        });
+
 
 
    </script> 
