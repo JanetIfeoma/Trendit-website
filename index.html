@@ -34,7 +34,9 @@
         <div class="left">
             <h1>Turn Daily Social Tasks into Paychecks! Get Paid for your engagements.</h1>
             <p>Earn Daily Income for Posting Ads and Completing Simple Social Tasks for Individuals, Businesses, and Brands on Your Social Media Account.</p>
-            <!-- <input type="text" placeholder="Continue with Email"> -->
+            <input type="email" id="email-input" placeholder="Continue with Email">
+            <button id="send-otp-button">Send OTP</button> 
+
             <div class="call-to-actions">
                <a href="https://app.trendit3.com"> <button id="cta">Create account</button></a>
                 <!-- <img src="./images/video.svg" width="28px">
@@ -426,6 +428,36 @@
     </div>
     
     <script src="./js/script.js"></script>
+    <script>
+        document.getElementById('send-otp-button').addEventListener('click', function() {
+    var email = document.getElementById('email-input').value;
+    sendOTP(email);
+});
+
+function sendOTP(email) {
+    fetch('https://api-staging.trendit3.com/api/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Assuming data contains the success flag
+            window.location.href = '/confirm-otp'; // Adjust the URL to your OTP screen
+        } else {
+            alert('Failed to send OTP. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    });
+}
+
+    </script>
     <script src="./js/scrollreveal.min.js"></script>
     
 
