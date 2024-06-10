@@ -442,7 +442,12 @@ function sendOTP(email) {
         },
         body: JSON.stringify({ email: email })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
     .then(data => {
         if (data.success) {
             // Assuming data contains the success flag
@@ -456,7 +461,6 @@ function sendOTP(email) {
         alert('An error occurred. Please try again.');
     });
 }
-
     </script>
     <script src="./js/scrollreveal.min.js"></script>
     
