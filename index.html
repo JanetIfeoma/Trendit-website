@@ -450,6 +450,7 @@ function getCookie(name) {
     if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
+
 const baseUrl = 'https://api-staging.trendit3.com/api/admin';
 const accessToken = getCookie('accessToken');
 
@@ -479,6 +480,7 @@ function sendOTP(email) {
         console.error('Error during fetch:', error);
         alert('An error occurred while sending OTP. Please try again.');
     });
+
 }
 
     </script>
