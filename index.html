@@ -442,16 +442,11 @@ function sendOTP(email) {
         },
         body: JSON.stringify({ email: email })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
         if (data.success) {
-            // Assuming data contains the success flag
-            window.location.href = '/confirm-otp'; // Adjust the URL to your OTP screen
+            
+            window.location.href = '/confirm-otp';
         } else {
             alert('Failed to send OTP. Please try again.');
         }
