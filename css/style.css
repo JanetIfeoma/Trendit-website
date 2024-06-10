@@ -160,7 +160,7 @@ html{
     margin: 10px 0;
 }
 
-.call-to-actions #cta{
+.call-to-actions #cta, .otp{
     background-color: #CB29BE;
     border-radius: 100px;
     padding: 14px 24px;
@@ -1085,7 +1085,7 @@ footer .right .bottom .list{
         
     }
     
-    .call-to-actions #cta {
+    .call-to-actions #cta, .otp {
         padding: 12px 24px; 
         font-size: 14px;text-wrap: nowrap;
     }
@@ -1413,7 +1413,7 @@ footer .left .social-media-links{
         
     }
     
-    .call-to-actions #cta {
+    .call-to-actions #cta , .otp{
         padding: 12px 24px; 
         font-size: 14px;text-wrap: nowrap;
         word-wrap: none;
@@ -1742,7 +1742,7 @@ footer .left .social-media-links{
         
     }
     
-    .call-to-actions #cta {
+    .call-to-actions #cta, .otp {
         background-color: #CB29BE;
         border-radius: 100px;
         padding: 14px 24px;
