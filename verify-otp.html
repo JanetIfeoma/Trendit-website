@@ -3,21 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/favicon_io/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@200&display=swap" rel="stylesheet">
     <title>Verify OTP</title>
 </head>
-<body>
-    <!-- OTP Confirmation Form -->
-    <div>
-        <input type="text" id="otp-input" placeholder="Enter the OTP">
-        <button id="verify-otp-button">Verify OTP</button>
-    </div>
+<style>
+      body{
+          font-family:"DM Sans", sans-serif ;
+          background-color: white;
+          color: black;
+          height: 100vh;
+          box-sizing: border-box;
+      }
+      .container{
+          gap: 5px;
+          display: flex;
+          flex-direction: column;
+          
+      }
+      
+      .container input::placeholder{
+          color: #a3a3a3;
+      }
+      
+      .container .otp-box{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .container h1{
+          font-family: "DM Sans", sans-serif;
+          font-weight:500;
+          font-size:38px;
+          text-align: center;
+          font-family: "DM Sans", sans-serif;
+            line-height: 53.76px;
+            letter-spacing: -0.03em;
+            margin: 0;
+    
+      }
+      .container .header{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding:30px ;
+      }
+      .container .header a{
+          font-size: 16PX;
+          font-weight: 500;
+          text-decoration: none;
+      }
+      .container .otp-box p {
+        text-align: center;
+        width: 300px;
+        font-size: 17px;
+        color: #a3a3a3;
 
+      }
+      .otp-input {
+            width: 45px;
+            height: 45px;
+            text-align: center;
+            margin: 0 5px;
+            font-size: 13px;
+            border-radius: 5px;
+            background-color:rgb(167, 166, 166);
+            border: none;
+        }
+
+</style>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="./images/Logo_Default.png">
+            <a href="login.html">Go back</a>
+        </div> 
+        <div class="otp-box">
+        <h1>Confirm your email</h1>
+        <p>We have sent an email with a code to <span id="email"></span>jiffyjiffy27@gmail.com, please enter it below to create your Trendit account.</p>
+        <div id="otp-input-container">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+        </div>
+        <button id="verify-otp-button">Verify OTP</button>
+</div>
     <!-- Registration Form -->
     <div id="registration-form" style="display:none;">
         <input type="text" id="name-input" placeholder="Enter your name">
         <input type="password" id="password-input" placeholder="Enter your password">
         <button id="complete-registration-button">Complete Registration</button>
     </div>
+    </div>      
+   
 
     <script>
         document.getElementById('verify-otp-button').addEventListener('click', function() {
@@ -38,7 +122,9 @@
             })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.statusText);
+                    return response.json().then(errData => {
+                        throw new Error(`Network response was not ok: ${response.status} - ${response.statusText} - ${JSON.stringify(errData)}`);
+                    });
                 }
                 return response.json();
             })
@@ -72,14 +158,16 @@
             })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.statusText);
+                    return response.json().then(errData => {
+                        throw new Error(`Network response was not ok: ${response.status} - ${response.statusText} - ${JSON.stringify(errData)}`);
+                    });
                 }
                 return response.json();
             })
             .then(data => {
                 if (data.status === 'success') {
                     localStorage.setItem('access_token', data.access_token);
-                    window.location.href = 'https://app.trendit3.com';
+                    window.location.href = 'https://app.trendit3.com/dashboard';
                 } else {
                     alert('Failed to complete registration. Please try again.');
                 }
@@ -88,7 +176,6 @@
                 console.error('Fetch error:', error);
                 alert('An error occurred: ' + error.message);
             });
-        });
-    </script>
+        });</script>
 </body>
 </html>
