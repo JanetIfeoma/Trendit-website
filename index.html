@@ -430,7 +430,7 @@
     
     <script src="./js/script.js"></script>
     <script>
-       document.getElementById('send-otp-button').addEventListener('click', function() {
+    document.getElementById('send-otp-button').addEventListener('click', function() {
     // Get the email input value
     var email = document.getElementById('email-input').value;
 
@@ -463,8 +463,11 @@
         // Log the response to see its structure
         console.log('Response data:', data);
 
-        // Assuming a successful response
-        if (data.success) {
+        // Check the actual response structure
+        if (data.status === 'success') {
+            // Store the signup token in local storage for later use
+            localStorage.setItem('signup_token', data.signup_token);
+
             // Redirect to the OTP confirmation page
             window.location.href = 'https://app.trendit3.com/confirm-otp';
         } else {
@@ -476,6 +479,7 @@
         alert('An error occurred: ' + error.message);
     });
 });
+
 
     </script>
     
