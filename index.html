@@ -36,7 +36,7 @@
             <p>Earn Daily Income for Posting Ads and Completing Simple Social Tasks for Individuals, Businesses, and Brands on Your Social Media Account.</p>
             <input type="email" id="email-input" placeholder="Continue with Email">
             <button class="otp"  id="send-otp-button">Create account</button> 
-            
+
 
             <div class="call-to-actions">
                <!-- <a href="https://app.trendit3.com"> <button id="cta">Create account</button></a> -->
@@ -430,49 +430,53 @@
     
     <script src="./js/script.js"></script>
     <script>
-        document.getElementById('send-otp-button').addEventListener('click', function() {
-            // Get the email input value
-            var email = document.getElementById('email-input').value;
-    
-            // Validate the email input
-            if (!email) {
-                alert('Please enter your email.');
-                return;
-            }
-    
-            // Prepare the data to be sent in the request
-            var data = {
-                email: email
-            };
-    
-            // Send the OTP request using fetch
-            fetch('https://api-staging.trendit3.com/api/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Assuming a successful response
-                if (data.success) {
-                    // Redirect to the OTP confirmation page
-                    window.location.href = 'https://app.trendit3.com/confirm-otp';
-                } else {
-                    alert('Failed to send OTP. Please try again.');
-                }
-            })
-            .catch(error => {
-                console.error('Fetch error:', error);
-                alert('An error occurred: ' + error.message);
-            });
-        });
+       document.getElementById('send-otp-button').addEventListener('click', function() {
+    // Get the email input value
+    var email = document.getElementById('email-input').value;
+
+    // Validate the email input
+    if (!email) {
+        alert('Please enter your email.');
+        return;
+    }
+
+    // Prepare the data to be sent in the request
+    var data = {
+        email: email
+    };
+
+    // Send the OTP request using fetch
+    fetch('https://api-staging.trendit3.com/api/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Log the response to see its structure
+        console.log('Response data:', data);
+
+        // Assuming a successful response
+        if (data.success) {
+            // Redirect to the OTP confirmation page
+            window.location.href = 'https://app.trendit3.com/confirm-otp';
+        } else {
+            alert('Failed to send OTP. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+        alert('An error occurred: ' + error.message);
+    });
+});
+
     </script>
     
     
