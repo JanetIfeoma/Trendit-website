@@ -110,62 +110,66 @@
      
    
 
-    <script>
-       document.addEventListener('DOMContentLoaded', function() {
-            var email = localStorage.getItem('user_email');
-            document.getElementById('email').textContent = email;
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var email = localStorage.getItem('user_email');
+        document.getElementById('email').textContent = email;
 
-            var otpInputs = document.getElementsByClassName('otp-input');
-            var signupToken = localStorage.getItem('signup_token');
+        var otpInputs = document.getElementsByClassName('otp-input');
+        var signupToken = localStorage.getItem('signup_token');
 
-            function verifyOTP() {
-                var otp = '';
-                for (var i = 0; i < otpInputs.length; i++) {
-                    otp += otpInputs[i].value;
-                }
-
-                if (otp.length === 6) {
-                    var data = { otp: otp, signup_token: signupToken };
-
-                    fetch('https://api-staging.trendit3.com/api/verify-email', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            return response.json().then(errData => {
-                                throw new Error(`Network response was not ok: ${response.status} - ${response.statusText} - ${JSON.stringify(errData)}`);
-                            });
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.status === 'success') {
-                            document.getElementById('registration-form').style.display = 'block';
-                        } else {
-                            alert('Failed to verify OTP. Please try again.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Fetch error:', error);
-                        alert('An error occurred: ' + error.message);
-                    });
-                }
+        function verifyOTP() {
+            var otp = '';
+            for (var i = 0; i < otpInputs.length; i++) {
+                otp += otpInputs[i].value;
             }
 
-            for (var i = 0; i < otpInputs.length; i++) {
-                otpInputs[i].addEventListener('input', function() {
-                    if (this.value.length === 1) {
-                        var nextInput = this.nextElementSibling;
-                        if (nextInput && nextInput.tagName.toLowerCase() === 'input') {
-                            nextInput.focus();
-                        } else {
-                            verifyOTP();
-                        }
+            if (otp.length === 6) {
+                var data = { otp: otp, signup_token: signupToken };
+                console.log('Data being sent to verify-email:', data);  // Debugging log
+
+                fetch('https://api-staging.trendit3.com/api/verify-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(errData => {
+                            throw new Error(`Network response was not ok: ${response.status} - ${response.statusText} - ${JSON.stringify(errData)}`);
+                        });
                     }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response from verify-email:', data);  // Debugging log
+                    if (data.status === 'success') {
+                        localStorage.setItem('access_token', data.access_token);
+                        window.location.href = 'registration.html';
+                    } else {
+                        alert('Failed to verify OTP. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    alert('An error occurred: ' + error.message);
                 });
             }
-        }); </script>
+        }
+
+        for (var i = 0; i < otpInputs.length; i++) {
+            otpInputs[i].addEventListener('input', function() {
+                if (this.value.length === 1) {
+                    var nextInput = this.nextElementSibling;
+                    if (nextInput && nextInput.tagName.toLowerCase() === 'input') {
+                        nextInput.focus();
+                    } else {
+                        verifyOTP();
+                    }
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>
