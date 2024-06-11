@@ -6,9 +6,19 @@
     <title>Registration</title>
 </head>
 <body>
+    <div>
+        <h1>Register</h1>
+        <form id="initial-registration-form">
+            <label for="email-input">Email:</label>
+            <input type="email" id="email-input" required>
+            <br><br>
+            <button id="send-otp-button">Send OTP</button>
+        </form>
+    </div>
+
     <div id="registration-form" style="display: none;">
         <h1>Complete Your Registration</h1>
-        <form id="registration-form">
+        <form>
             <label for="name-input">Name:</label>
             <input type="text" id="name-input" required>
             <br><br>
@@ -20,7 +30,46 @@
     </div>
 
     <script>
-        var signupToken = localStorage.getItem('signup_token');
+        document.getElementById('send-otp-button').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            var email = document.getElementById('email-input').value;
+
+            if (!email) {
+                alert('Please enter your email.');
+                return;
+            }
+
+            localStorage.setItem('user_email', email);
+
+            var data = { email: email };
+
+            fetch('https://api-staging.trendit3.com/api/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(errData => {
+                        throw new Error(`Network response was not ok: ${response.status} - ${response.statusText} - ${JSON.stringify(errData)}`);
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    localStorage.setItem('signup_token', data.signup_token);
+                    window.location.href = 'verify-otp.html';
+                } else {
+                    alert('Failed to send OTP. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('An error occurred: ' + error.message);
+            });
+        });
 
         document.getElementById('complete-registration-button').addEventListener('click', function(event) {
             event.preventDefault();
@@ -29,6 +78,8 @@
                 name: document.getElementById('name-input').value,
                 password: document.getElementById('password-input').value
             };
+
+            var signupToken = localStorage.getItem('signup_token');
 
             var data = { ...userData, signup_token: signupToken };
 

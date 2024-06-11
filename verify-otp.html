@@ -74,16 +74,29 @@
             border: none;
         }
 
+        @media screen and (max-width: 600px) {
+            .otp-input {
+            width: 45px;
+            height: 45px;
+            text-align: center;
+            margin: 0 5px;
+            font-size: 13px;
+            border-radius: 5px;
+            background-color:rgb(167, 166, 166);
+            border: none;
+            text-wrap: nowrap;
+        }
+}
 </style>
 <body>
     <div class="container">
         <div class="header">
             <img src="./images/Logo_Default.png">
-            <a href="login.html">Go back</a>
+            <a href="index.html">Go back</a>
         </div> 
         <div class="otp-box">
         <h1>Confirm your email</h1>
-        <p>We have sent an email with a code to <span id="email"></span>jiffyjiffy27@gmail.com, please enter it below to create your Trendit account.</p>
+        <p>We have sent an email with a code to <span id="email"></span>, please enter it below to create your Trendit account.</p>
         <div id="otp-input-container">
             <input type="text" class="otp-input" maxlength="1">
             <input type="text" class="otp-input" maxlength="1">
@@ -92,65 +105,67 @@
             <input type="text" class="otp-input" maxlength="1">
             <input type="text" class="otp-input" maxlength="1">
         </div>
-        <!-- <button id="verify-otp-button">Verify OTP</button> -->
+      
 </div>
      
    
 
     <script>
-        var otpInputs = document.getElementsByClassName('otp-input');
-        var signupToken = localStorage.getItem('signup_token');
+       document.addEventListener('DOMContentLoaded', function() {
+            var email = localStorage.getItem('user_email');
+            document.getElementById('email').textContent = email;
 
-        function verifyOTP() {
-            var otp = '';
+            var otpInputs = document.getElementsByClassName('otp-input');
+            var signupToken = localStorage.getItem('signup_token');
+
+            function verifyOTP() {
+                var otp = '';
+                for (var i = 0; i < otpInputs.length; i++) {
+                    otp += otpInputs[i].value;
+                }
+
+                if (otp.length === 6) {
+                    var data = { otp: otp, signup_token: signupToken };
+
+                    fetch('https://api-staging.trendit3.com/api/verify-email', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(errData => {
+                                throw new Error(`Network response was not ok: ${response.status} - ${response.statusText} - ${JSON.stringify(errData)}`);
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.status === 'success') {
+                            document.getElementById('registration-form').style.display = 'block';
+                        } else {
+                            alert('Failed to verify OTP. Please try again.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                        alert('An error occurred: ' + error.message);
+                    });
+                }
+            }
 
             for (var i = 0; i < otpInputs.length; i++) {
-                otp += otpInputs[i].value;
-            }
-
-            if (otp.length === 6) {
-                var data = { otp: otp, signup_token: signupToken };
-
-                fetch('https://api-staging.trendit3.com/api/verify-email', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        return response.json().then(errData => {
-                            throw new Error(`Network response was not ok: ${response.status} - ${response.statusText} - ${JSON.stringify(errData)}`);
-                        });
+                otpInputs[i].addEventListener('input', function() {
+                    if (this.value.length === 1) {
+                        var nextInput = this.nextElementSibling;
+                        if (nextInput && nextInput.tagName.toLowerCase() === 'input') {
+                            nextInput.focus();
+                        } else {
+                            verifyOTP();
+                        }
                     }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.status === 'success') {
-                        localStorage.setItem('access_token', data.access_token);
-                        window.location.href = 'registration.html';
-                    } else {
-                        alert('Failed to verify OTP. Please try again.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Fetch error:', error);
-                    alert('An error occurred: ' + error.message);
                 });
             }
-        }
-
-        // Event listeners for OTP input fields
-        for (var i = 0; i < otpInputs.length; i++) {
-            otpInputs[i].addEventListener('input', function() {
-                if (this.value.length === 1) {
-                    var nextInput = this.nextElementSibling;
-                    if (nextInput && nextInput.tagName.toLowerCase() === 'input') {
-                        nextInput.focus();
-                    } else {
-                        verifyOTP();
-                    }
-                }
-            });
-        }</script>
+        }); </script>
 </body>
 </html>
