@@ -430,55 +430,43 @@
     
     <script src="./js/script.js"></script>
     <script>
-    document.getElementById('send-otp-button').addEventListener('click', function() {
-    // Get the email input value
-    var email = document.getElementById('email-input').value;
+   document.getElementById('send-otp-button').addEventListener('click', function() {
+            var email = document.getElementById('email-input').value;
 
-    // Validate the email input
-    if (!email) {
-        alert('Please enter your email.');
-        return;
-    }
+            if (!email) {
+                alert('Please enter your email.');
+                return;
+            }
 
-    // Prepare the data to be sent in the request
-    var data = {
-        email: email
-    };
+            var data = { email: email };
 
-    // Send the OTP request using fetch
-    fetch('https://api-staging.trendit3.com/api/signup', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok: ' + response.statusText);
-        }
-        return response.json();
-    })
-    .then(data => {
-        // Check if the response indicates success
-        if (data.status === 'success') {
-            // Store the signup token in local storage for later use
-            localStorage.setItem('signup_token', data.signup_token);
-
-            // Redirect to the OTP confirmation page
-            window.location.href = 'https://app.trendit3.com/confirm-otp';
-        } else {
-            alert('Failed to send OTP. Please try again.');
-        }
-    })
-    .catch(error => {
-        console.error('Fetch error:', error);
-        alert('An error occurred: ' + error.message);
-    });
-});
-
-
+            fetch('https://api-staging.trendit3.com/api/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    localStorage.setItem('signup_token', data.signup_token);
+                    window.location.href = 'verify-otp.html';
+                } else {
+                    alert('Failed to send OTP. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('An error occurred: ' + error.message);
+            });
+        });
     </script>
+
+    <script src="./js/cookie.js"></script>
     
     
     <script src="./js/scrollreveal.min.js"></script>
