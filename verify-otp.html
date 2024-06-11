@@ -92,90 +92,65 @@
             <input type="text" class="otp-input" maxlength="1">
             <input type="text" class="otp-input" maxlength="1">
         </div>
-        <button id="verify-otp-button">Verify OTP</button>
+        <!-- <button id="verify-otp-button">Verify OTP</button> -->
 </div>
-    <!-- Registration Form -->
-    <div id="registration-form" style="display:none;">
-        <input type="text" id="name-input" placeholder="Enter your name">
-        <input type="password" id="password-input" placeholder="Enter your password">
-        <button id="complete-registration-button">Complete Registration</button>
-    </div>
-    </div>      
+     
    
 
     <script>
-        document.getElementById('verify-otp-button').addEventListener('click', function() {
-            var otp = document.getElementById('otp-input').value;
-            var signupToken = localStorage.getItem('signup_token');
+        var otpInputs = document.getElementsByClassName('otp-input');
+        var signupToken = localStorage.getItem('signup_token');
 
-            if (!otp) {
-                alert('Please enter the OTP.');
-                return;
+        function verifyOTP() {
+            var otp = '';
+
+            for (var i = 0; i < otpInputs.length; i++) {
+                otp += otpInputs[i].value;
             }
 
-            var data = { otp: otp, signup_token: signupToken };
+            if (otp.length === 6) {
+                var data = { otp: otp, signup_token: signupToken };
 
-            fetch('https://api-staging.trendit3.com/api/verify-email', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(errData => {
-                        throw new Error(`Network response was not ok: ${response.status} - ${response.statusText} - ${JSON.stringify(errData)}`);
-                    });
+                fetch('https://api-staging.trendit3.com/api/verify-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(errData => {
+                            throw new Error(`Network response was not ok: ${response.status} - ${response.statusText} - ${JSON.stringify(errData)}`);
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status === 'success') {
+                        localStorage.setItem('access_token', data.access_token);
+                        window.location.href = 'registration.html';
+                    } else {
+                        alert('Failed to verify OTP. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    alert('An error occurred: ' + error.message);
+                });
+            }
+        }
+
+        // Event listeners for OTP input fields
+        for (var i = 0; i < otpInputs.length; i++) {
+            otpInputs[i].addEventListener('input', function() {
+                if (this.value.length === 1) {
+                    var nextInput = this.nextElementSibling;
+                    if (nextInput && nextInput.tagName.toLowerCase() === 'input') {
+                        nextInput.focus();
+                    } else {
+                        verifyOTP();
+                    }
                 }
-                return response.json();
-            })
-            .then(data => {
-                if (data.status === 'success') {
-                    document.getElementById('registration-form').style.display = 'block';
-                } else {
-                    alert('Failed to verify OTP. Please try again.');
-                }
-            })
-            .catch(error => {
-                console.error('Fetch error:', error);
-                alert('An error occurred: ' + error.message);
             });
-        });
-
-        document.getElementById('complete-registration-button').addEventListener('click', function() {
-            var userData = {
-                name: document.getElementById('name-input').value,
-                password: document.getElementById('password-input').value,
-            };
-
-            var signupToken = localStorage.getItem('signup_token');
-
-            var data = { ...userData, signup_token: signupToken };
-
-            fetch('https://api-staging.trendit3.com/api/complete-registration', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(errData => {
-                        throw new Error(`Network response was not ok: ${response.status} - ${response.statusText} - ${JSON.stringify(errData)}`);
-                    });
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.status === 'success') {
-                    localStorage.setItem('access_token', data.access_token);
-                    window.location.href = 'https://app.trendit3.com/dashboard';
-                } else {
-                    alert('Failed to complete registration. Please try again.');
-                }
-            })
-            .catch(error => {
-                console.error('Fetch error:', error);
-                alert('An error occurred: ' + error.message);
-            });
-        });</script>
+        }</script>
 </body>
 </html>
