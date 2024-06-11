@@ -445,38 +445,36 @@
         email: email
     };
 
-    // Define the function to send the OTP request
-    function sendOtpRequest() {
-        axios.post('https://api-staging.trendit3.com/api/signup', data, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => {
-            console.log('Response data:', response.data);
-            if (response.data.status === 'success') {
-                // Store the signup token in local storage for later use
-                localStorage.setItem('signup_token', response.data.signup_token);
+    // Send the OTP request using fetch
+    fetch('https://api-staging.trendit3.com/api/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Check if the response indicates success
+        if (data.status === 'success') {
+            // Store the signup token in local storage for later use
+            localStorage.setItem('signup_token', data.signup_token);
 
-                // Redirect to the OTP confirmation page
-                window.location.href = 'https://app.trendit3.com/confirm-otp';
-            } else {
-                alert('Failed to send OTP. Please try again.');
-            }
-        })
-        .catch(error => {
-            if (error.response && error.response.status === 401) {
-                alert('Access token has expired. Please log in again.');
-                // Optional: Redirect to login page or handle token refresh
-            } else {
-                console.error('Error:', error);
-                alert('An error occurred: ' + error.message);
-            }
-        });
-    }
-
-    // Call the function to send the OTP request
-    sendOtpRequest();
+            // Redirect to the OTP confirmation page
+            window.location.href = 'https://app.trendit3.com/confirm-otp';
+        } else {
+            alert('Failed to send OTP. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+        alert('An error occurred: ' + error.message);
+    });
 });
 
 
